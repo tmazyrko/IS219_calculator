@@ -1,4 +1,5 @@
 module.exports = class City {
+
     constructor(data = null) {
         if(data) {
             this.id = data.id;
@@ -11,10 +12,11 @@ module.exports = class City {
             this.capital = data.capital;
             this.admin_name = data.admin_name;
         }
-
     }
-    //Factory Method to Create a City
+
+    // Factory method
     static create(data) {
         return new City(data);
     }
+
 }

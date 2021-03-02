@@ -19,24 +19,21 @@ module.exports = class Read {
                     delimiter: ',',
                     header: true,
                     complete: function ({data}) {
+
                         data.forEach(function (rec) {
                             list.push(Model.create(rec));
                         })
+
                         if (typeof list != "undefined") resolve(list);
 
-                        },
+                    },
                     skipEmptyLines: true,
                 });
-            })
 
-            //return list;
+            }) //end inFile.on function
 
-            //records[0].forEach(function (data) {
-            //list.push(Model.create(data));
-            //})
+        }) // end Promise
 
-            //return list;
-        })
-    }
+    } // end getRecords
 
-}
+} // end class

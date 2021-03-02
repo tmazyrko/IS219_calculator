@@ -1,7 +1,8 @@
+// Async implementation of CSV reader using Papa Parse as an alternative to csv-parse
+
 const file = require('../FileOperations/File');
 const fs = require('fs');
 const Papa = require('papaparse/papaparse');
-const City = require('../Models/City')
 
 module.exports = class Read {
     static getRecords(filename, Model) {

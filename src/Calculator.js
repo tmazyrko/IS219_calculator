@@ -1,10 +1,10 @@
-const Calculation = require('./models/Calculation');
-const Sum = require('./operations/Sum')
-const Difference = require('./operations/Difference')
-const Product = require('./operations/Product')
-const Quotient = require('./operations/Quotient')
-const Power = require('./operations/Power')
-const Root = require('./operations/Root')
+const Calculation = require('./Models/Calculation');
+const Sum = require('./Operations/Sum')
+const Difference = require('./Operations/Difference')
+const Product = require('./Operations/Product')
+const Quotient = require('./Operations/Quotient')
+const Power = require('./Operations/Power')
+const Root = require('./Operations/Root')
 
 class Calculator {
     static Calculations = []

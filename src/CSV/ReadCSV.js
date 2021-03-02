@@ -1,30 +1,42 @@
+const file = require('../FileOperations/File');
+const fs = require('fs');
+const Papa = require('papaparse/papaparse');
+const City = require('../Models/City')
+
 module.exports = class Read {
     static getRecords(filename, Model) {
-        const file = require('../FileOperations/File');
-        const fs = require('fs');
-        const Papa = require('papaparse/papaparse')
+        return new Promise((resolve, reject) => {
 
-        let absolutePath = file.getAbsolutePath(filename);
-        let inFile = fs.createReadStream(absolutePath);
+            let absolutePath = file.getAbsolutePath(filename);
+            //let inFile = fs.createReadStream(absolutePath);
 
-        let list = Array();
-        Papa.parse(inFile, {
-            delimiter: ',',
-            complete: function(results) {
-                list.push(results.data);
-                results.data.forEach(function (data) {
-                    list.push(Model.create(data));
+            let x = 1;
+            let list = [];
+
+            let inFile = fs.createReadStream(absolutePath);
+            inFile.on("open", function () {
+                Papa.parse(inFile, {
+                    delimiter: ',',
+                    header: true,
+                    complete: function ({data}) {
+                        data.forEach(function (rec) {
+                            list.push(Model.create(rec));
+                        })
+                        if (typeof list != "undefined") resolve(list);
+
+                        },
+                    skipEmptyLines: true,
                 });
-            },
-            skipEmptyLines: true,
-        });
+            })
 
-        //records[0].forEach(function (data) {
+            //return list;
+
+            //records[0].forEach(function (data) {
             //list.push(Model.create(data));
-        //})
+            //})
 
-        return list;
-
+            //return list;
+        })
     }
 
 }
